@@ -1,0 +1,158 @@
+/* General Body Styles */
+:root {
+    --bg-color: #f0f2f5;
+    --calculator-bg: #ffffff;
+    --display-bg: #e0e0e0;
+    --text-color: #333;
+    --button-bg-number: #f9f9f9;
+    --button-bg-operator: #ffe0b2; /* Light orange */
+    --button-bg-clear: #ffcdd2; /* Light red */
+    --button-bg-equals: #a5d6a7; /* Light green */
+    --button-hover-bg: #e0e0e0;
+    --button-active-bg: #c0c0c0;
+    --border-radius: 10px;
+    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-color);
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
+
+/* Calculator Container */
+.calculator {
+    background-color: var(--calculator-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    width: 320px; /* Fixed width for desktop, adjusted for mobile */
+    max-width: 90%; /* Ensure it doesn't overflow on very small screens */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Display Area */
+.calculator-display {
+    width: 100%;
+}
+
+#calculator-input {
+    width: calc(100% - 20px); /* Adjust for padding */
+    height: 60px;
+    background-color: var(--display-bg);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 2.2em;
+    text-align: right;
+    color: var(--text-color);
+    box-sizing: border-box; /* Include padding in width/height calculation */
+    transition: background-color 0.3s ease;
+    overflow-x: auto; /* Allow horizontal scrolling for long numbers */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+/* Buttons Grid */
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.btn {
+    width: 100%; /* Ensure buttons fill their grid cell */
+    height: 60px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    color: var(--text-color);
+}
+
+.btn:hover {
+    filter: brightness(0.95); /* Slightly darken on hover */
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    filter: brightness(0.9); /* More darken on active */
+    transform: translateY(0);
+}
+
+/* Specific Button Styles */
+.btn-number, .btn-decimal {
+    background-color: var(--button-bg-number);
+}
+
+.btn-operator {
+    background-color: var(--button-bg-operator);
+    color: #4a148c; /* Dark purple for operators */
+    font-weight: bold;
+}
+
+.btn-clear {
+    background-color: var(--button-bg-clear);
+    color: #b71c1c; /* Dark red for clear */
+    font-weight: bold;
+    grid-column: span 1; /* C takes 1 column */
+}
+
+.btn-equals {
+    background-color: var(--button-bg-equals);
+    color: #1b5e20; /* Dark green for equals */
+    font-weight: bold;
+    grid-column: span 2; /* Equals takes 2 columns */
+}
+
+.btn-zero {
+    grid-column: span 2; /* Zero button spans two columns */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 400px) {
+    .calculator {
+        padding: 15px;
+        width: 100%; /* Full width on smaller screens */
+        border-radius: 0; /* No border radius on full width to blend with edges */
+        box-shadow: none; /* No shadow on full width */
+        min-height: 100vh; /* Fill entire screen height */
+        justify-content: center;
+    }
+
+    body {
+        min-height: auto; /* Adjust for full height calculator */
+    }
+
+    #calculator-input {
+        font-size: 1.8em;
+        height: 50px;
+        padding: 8px;
+    }
+
+    .btn {
+        height: 55px;
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 320px) {
+    .calculator {
+        padding: 10px;
+    }
+    .btn {
+        height: 50px;
+        font-size: 1.2em;
+    }
+}
